@@ -1,7 +1,7 @@
 package pl.pp;
 import java.util.Scanner;
 
-public class KALKULATOR_V2 {
+public class mojaDziesiataAplikacja {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
