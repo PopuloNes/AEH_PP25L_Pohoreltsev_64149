@@ -2,7 +2,7 @@ package pl.pp;
 
 public class mojaDziewiataAplikacja { // Should be "mojaDziewiataAplikacja"
     public static void main(String[] args) {
-        System.out.println("--- Lab 9: Warehouse (Magazyn) Demo ---");
+        System.out.println("--- Warehouse (Magazyn) Demo ---");
 
         // Assuming at the beginning the warehouse has 5000 units of available space
         // and is managed by an owner with default data.
