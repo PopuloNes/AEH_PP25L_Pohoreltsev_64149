@@ -1,6 +1,6 @@
 package pl.pp;
 
-public class mojaPiataAplikacja {
+public class mojaSzostaAplikacja {
 
     public static void printPattern(char symbol, int countInRow, int numberOfRows) {
         // Basic input validation
