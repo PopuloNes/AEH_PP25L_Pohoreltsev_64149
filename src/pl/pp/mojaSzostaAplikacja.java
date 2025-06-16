@@ -1,26 +1,44 @@
 package pl.pp;
 
-public class mojaSzostaAplikacja {
 
-    public static void printPattern(char symbol, int countInRow, int numberOfRows) {
-        // Basic input validation
-        if (countInRow <= 0 || numberOfRows <= 0) {
-            System.out.println("The number of characters in a row and the number of rows must be positive.");
-            return;
-        }
+public class mojaSzostaAplikacja { // Class name updated as per Lab 6 requirement
 
-        for (int i = 0; i < numberOfRows; i++) {
-            for (int j = 0; j < countInRow; j++) {
-                System.out.print(symbol);
-            }
-            System.out.println();
+    // Iterative method to calculate factorial
+    public static long factorialIterative(int n) {
+        if (n < 0) {
+            // Factorial is not defined for negative numbers
+            // Consider throwing an IllegalArgumentException for robust error handling
+            System.err.println("Factorial not defined for negative numbers.");
+            return -1;
         }
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        long result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    // Recursive method to calculate factorial
+    public static long factorialRecursive(int n) {
+        if (n < 0) {
+            // Factorial is not defined for negative numbers
+            System.err.println("Factorial not defined for negative numbers.");
+            return -1;
+        }
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        return n * factorialRecursive(n - 1);
     }
 
     public static void main(String[] args) {
         /*
-        // Calculations and display of the result for values assigned in the application code
-        System.out.println("Calculations and display of the result for values assigned in the application code");
+        // --- Original Lab 5 Code - Commented out as per Lab 6 requirements ---
+        // Obliczenia i wyświetlenie wyniku dla wartości przypisanych w kodzie aplikacji
+        System.out.println("Obliczenia i wyświetlenie wyniku dla wartości przypisanych w kodzie aplikacji");
         boolean gameOver = true;
         int score = 800;
         int levelCompleted = 5;
@@ -30,11 +48,11 @@ public class mojaSzostaAplikacja {
         if (gameOver) {
             finalScore += (levelCompleted * bonus);
             finalScore += 1000;
-            System.out.println("Your score #1 is " + finalScore);
+            System.out.println("Twoj wynik #1 to " + finalScore);
         }
 
-        // Calculations and display of the result for values assigned in the application code (different from before)
-        System.out.println("Calculations and display of the result for values assigned in the application code (different from before)");
+        // Obliczenia i wyświetlenie wyniku dla wartości przypisanych w kodzie aplikacji (innych niż poprzednio)
+        System.out.println("Obliczenia i wyświetlenie wyniku dla wartości przypisanych w kodzie aplikacji (innych niż poprzednio)");
         score = 10000;
         levelCompleted = 8;
         bonus = 200;
@@ -44,61 +62,83 @@ public class mojaSzostaAplikacja {
         if (gameOver) {
             finalScore += (levelCompleted * bonus);
             finalScore += 1000;
-            System.out.println("Your score #2 is " + finalScore);
+            System.out.println("Twoj wynik #2 to " + finalScore);
         }
 
-        // Calculations using the calculateScore_noArguments() method, but still for values assigned in the method's code
-        System.out.println("Calculations using the calculateScore_noArguments() method, but still for values assigned in the method's code");
+        // Obliczenia za pomocą metody calculateScore_noArguments(), ale nadal dla wartości przypisanych w kodzie metody
+        System.out.println("Obliczenia za pomocą metody calculateScore_noArguments(), ale nadal dla wartości przypisanych w kodzie metody");
         calculateScore_noArguments();
 
-        // Calculations using the calculateScore() method, but this time for values entered as arguments to the method call
-        System.out.println("Calculations using the calculateScore() method, but this time for values entered as arguments to the method call");
+        // Obliczenia za pomocą metody calculateScore(), ale tym razem dla wartości wpisanych do argumentu wywołania metody
+        System.out.println("Obliczenia za pomocą metody calculateScore(), ale tym razem dla wartości wpisanych do argumentu wywołania metody");
         calculateScore_arguments(true, 2500, 9, 2500);
-        // this can be called using previously declared variables
+        // można to wywołać za pomocą wcześniej zadeklarowanych zmiennych
         calculateScore_arguments(gameOver, score, levelCompleted, bonus);
-        // but you see that the function display also has #4 (because such display is written
-        // in the method. What to do to avoid this? See below:
+        // ale widzicie, że wyświetlanie funkcji jest również z numerkiem #4 (bo takie wyświetlanie jest zapisane
+        // w metodzie. Co zrobić, żeby tak nie było? Poniżej:
 
-        // Calculations and display can be made independent of each other by adding a parameter that this method will return
-        System.out.println("Calculations and display can be made independent of each other by adding a parameter that this method will return using return");
+        // Obliczenia i wyświetlanie można uniezależnić od siebie dodając parametr, który ta metoda będzie zwracać
+        System.out.println("Obliczenia i wyświetlanie można uniezależnić od siebie dodając parametr, który ta metoda będzie zwracać za pomocą return");
         finalScore = calculateScore_argumentsReturn(gameOver, score, levelCompleted, bonus);
-        System.out.println("Your score #5 is " + finalScore);
+        System.out.println("Twoj wynik #5 to " + finalScore);
         */
 
-        System.out.println("--- Start of Task-2 execution ---");
+        // --- Lab 6: Factorial Calculation and Performance Measurement ---
+        int numberForFactorial = 15; // You can change this value to test different numbers
+        // Note: Factorials grow very fast. 'long' can hold up to 20!
 
-        System.out.println("\nExample 1:");
-        printPattern('*', 5, 3);
-        // Expected output:
-        // *****
-        // *****
-        // *****
+        if (numberForFactorial > 20) {
+            System.out.println("Warning: Factorial for numbers greater than 20 will overflow 'long'. Consider using BigInteger.");
+        }
+        if (numberForFactorial < 0) {
+            System.out.println("Cannot calculate factorial for " + numberForFactorial + ". Please use a non-negative integer.");
+            return; // Exit if number is negative
+        }
 
-        System.out.println("\nExample 2:");
-        printPattern('#', 10, 2);
-        // Expected output:
-        // ##########
-        // ##########
 
-        System.out.println("\nExample 3 (one row, one character):");
-        printPattern('X', 1, 1);
-        // Expected output:
-        // X
+        System.out.println("Calculating factorial for N = " + numberForFactorial);
+        System.out.println("------------------------------------");
 
-        System.out.println("\nExample 4 (with incorrect data for validation demonstration):");
-        printPattern('$', 0, 5);
-        // Expected output:
-        // The number of characters in a row and the number of rows must be positive.
+        // Iterative factorial calculation and timing
+        long startTimeIterative = System.nanoTime();
+        long iterativeResult = factorialIterative(numberForFactorial);
+        long endTimeIterative = System.nanoTime();
+        long durationIterative = endTimeIterative - startTimeIterative;
 
-        System.out.println("\nExample 5 (with other incorrect data):");
-        printPattern('@', 5, -2);
-        // Expected output:
-        // The number of characters in a row and the number of rows must be positive.
+        System.out.println("Iterative Method:");
+        if (iterativeResult != -1) { // Check if calculation was valid
+            System.out.println("Factorial: " + iterativeResult);
+        }
+        System.out.println("Execution time: " + durationIterative + " ns");
+        System.out.println();
 
-        System.out.println("\n--- End of Task-2 execution ---");
+        // Recursive factorial calculation and timing
+        long startTimeRecursive = System.nanoTime();
+        long recursiveResult = factorialRecursive(numberForFactorial);
+        long endTimeRecursive = System.nanoTime();
+        long durationRecursive = endTimeRecursive - startTimeRecursive;
+
+        System.out.println("Recursive Method:");
+        if (recursiveResult != -1) { // Check if calculation was valid
+            System.out.println("Factorial: " + recursiveResult);
+        }
+        System.out.println("Execution time: " + durationRecursive + " ns");
+        System.out.println("------------------------------------");
+
+        // Simple comparison (optional)
+        if (iterativeResult != -1 && recursiveResult != -1) {
+            if (durationIterative < durationRecursive) {
+                System.out.println("Iterative method was faster for N = " + numberForFactorial);
+            } else if (durationRecursive < durationIterative) {
+                System.out.println("Recursive method was faster for N = " + numberForFactorial);
+            } else {
+                System.out.println("Both methods had similar execution times for N = " + numberForFactorial);
+            }
+        }
     }
 
     /*
+    // --- Original Lab 5 Helper Methods - Commented out ---
     private static void calculateScore_noArguments() {
         boolean gameOver = true;
         int score = 150;
@@ -109,7 +149,7 @@ public class mojaSzostaAplikacja {
         if (gameOver) {
             finalScore += (levelCompleted * bonus);
             finalScore += 1000;
-            System.out.println("Your score #3 is " + finalScore);
+            System.out.println("Twoj wynik #3 to " + finalScore);
         }
     }
     private static void calculateScore_arguments(boolean gameOver, int score, int levelCompleted, int bonus) {
@@ -117,7 +157,7 @@ public class mojaSzostaAplikacja {
         if (gameOver) {
             finalScore += (levelCompleted * bonus);
             finalScore += 1000;
-            System.out.println("Your score #4 is " + finalScore);
+            System.out.println("Twoj wynik #4 to " + finalScore);
         }
     }
     private static int calculateScore_argumentsReturn(boolean gameOver, int score, int levelCompleted, int bonus) {
